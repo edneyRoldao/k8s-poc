@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <title>All Addresses</title>
+</head>
+<body>
+    <div class="container mt-3">
+        <h1 class="mb-4">All addresses</h1>
+        <a href="/new-address" class="btn btn-success">New Address</a>
+        
+        <% addresses.forEach(address => { %>
+            <div class="card mt-4">
+                <div class="card-body">
+                    <h4 class="card-title"><%= address.clientName %></h4>
+                    <div class="card-subtitle text-muted mb-2"> <%= address.cep %> </div>
+                    <div class="card-subtitle text-muted mb-2"> <%= address.logradouro %>, number: <%= address.number %> </div>
+                    <a href="/detail-address/<%= address._id %>" class="btn btn-primary">Detail</a>
+                </div>
+            </div>
+        <% }) %>        
+
+    </div>
+</body>
+</html>
