@@ -55,5 +55,5 @@ app.post('/api/addresses', async (req, res) => {
 
 
 app.listen(PORT, () => {
-    console.log(`frontend is working on port: ${PORT}`);
+    console.log(`backend is working on port: ${PORT}`);
 })
