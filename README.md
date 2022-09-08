@@ -1,8 +1,8 @@
 # k8s-poc
 
-![ScreenShot](k8s-architecture.png)
 
 ## The porpuses of this POC
+![ScreenShot](k8s-architecture.png)
 - connect docker containers from each other with docker-compose and k8s services
 - expose applications using ingress
 - how to work with replica set with k8s
