@@ -1,7 +1,7 @@
+require('dotenv').config();
 const axios = require('axios');
 const express = require('express');
 const mongoose = require('mongoose');
-const PORT = process.env.PORT | 3001;
 const Address = require('./model/address');
 
 const app = express();
@@ -9,17 +9,20 @@ const app = express();
 app.use(express.json());
 app.use(express.urlencoded({extended: true}));
 
-mongoose.connect('mongodb://localhost/address-database', {
-    useNewUrlParser: true,
-    useUnifiedTopology: true
-});
-
 app.use(function(req, res, next) {
     res.header('Access-Control-Allow-Origin', '*');
     res.header("Access-Control-Allow-Headers", '*');
     next();
 })
 
+mongoose.connect(process.env.MONGO_CONNECTION, {
+    useNewUrlParser: true,
+    useUnifiedTopology: true
+});    
+
+app.get('/api/home', (req, res) => {
+    res.status(200).json( { message: 'the backend API for K8S POC is working' } );
+});
 
 app.get('/api/addresses', async (req, res) => {
     const addresses = await Address.find();
@@ -53,7 +56,6 @@ app.post('/api/addresses', async (req, res) => {
     res.status(201).json(addressSaved);
 });
 
-
-app.listen(PORT, () => {
-    console.log(`backend is working on port: ${PORT}`);
+app.listen(parseInt(process.env.APP_PORT), () => {
+    console.log(`backend is working on port: ${process.env.APP_PORT}`);
 })

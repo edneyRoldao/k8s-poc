@@ -1,0 +1,24 @@
+version: '3'
+
+services:
+  mongodatabase:
+    image: mongo
+    container_name: "mongodb-address-app"
+    ports:
+      - "27017:27017"
+    volumes:
+      - ../data/mongo:/data/db
+  addressbackend:
+    build: ./nodejs-backend
+    ports:
+      - "3030:3030"
+    environment:
+      APP_PORT: "3030"
+      MONGO_CONNECTION: "mongodb://mongodatabase/address-database"
+  addressfrontend:
+    build: ./nodejs-frontend
+    ports:
+      - "3031:3031"
+    environment:
+      APP_PORT: "3031"
+      BACKEND_HOST: "http://addressbackend:3030"
