@@ -1,8 +1,8 @@
 # k8s-poc
+Kubernetes study
 
 
 ## The porpuses of this POC
-![ScreenShot](k8s-architecture.png)
 - connect docker containers from each other with docker-compose and k8s services
 - expose applications using ingress
 - how to work with replica set with k8s
@@ -12,6 +12,10 @@ To test the concepts behind kubernetes features were created the following proje
 - address-frontend-app  (an interface to created, edit and list addresses)
 - address-backend-app   (an API where frontend-app above will connect to)
 - mongodb               (a database to store addresses data from backend-app above)
+
+
+![architecture](k8s-architecture.png)
+
 
 ## Mongodb run docker command
 ```
