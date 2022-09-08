@@ -1,11 +1,13 @@
 # k8s-poc
 
+![ScreenShot](k8s-architecture.png)
+
 ## The porpuses of this POC
 - connect docker containers from each other with docker-compose and k8s services
 - expose applications using ingress
 - how to work with replica set with k8s
 
-## Architeture
+## Architecture
 To test the concepts behind kubernetes features were created the following projects:
 - address-frontend-app  (an interface to created, edit and list addresses)
 - address-backend-app   (an API where frontend-app above will connect to)
