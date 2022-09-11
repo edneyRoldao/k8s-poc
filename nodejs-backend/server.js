@@ -5,6 +5,7 @@ const mongoose = require('mongoose');
 const Address = require('./model/address');
 
 const app = express();
+const env = process.env;
 
 app.use(express.json());
 app.use(express.urlencoded({extended: true}));
@@ -15,7 +16,7 @@ app.use(function(req, res, next) {
     next();
 })
 
-mongoose.connect(process.env.MONGO_CONNECTION, {
+mongoose.connect(`mongodb://${env.MONGO_USERNAME}:${env.MONGO_PASSWORD}@${env.MONGO_HOST}/${env.MONGO_DBNAME}`, {
     useNewUrlParser: true,
     useUnifiedTopology: true
 });    
@@ -56,6 +57,6 @@ app.post('/api/addresses', async (req, res) => {
     res.status(201).json(addressSaved);
 });
 
-app.listen(parseInt(process.env.APP_PORT), () => {
-    console.log(`backend is working on port: ${process.env.APP_PORT}`);
+app.listen(parseInt(env.APP_PORT), () => {
+    console.log(`backend is working on port: ${env.APP_PORT}`);
 })

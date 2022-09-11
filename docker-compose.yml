@@ -8,13 +8,19 @@ services:
       - "27017:27017"
     volumes:
       - ../data/mongo:/data/db
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: "edypaul"
+      MONGO_INITDB_ROOT_PASSWORD: "1qaz@WSX"
   addressbackend:
     build: ./nodejs-backend
     ports:
       - "3030:3030"
     environment:
       APP_PORT: "3030"
-      MONGO_CONNECTION: "mongodb://mongodatabase/address-database"
+      MONGO_HOST: "mongodatabase"
+      MONGO_USERNAME: "edypaul"
+      MONGO_PASSWORD: "1qaz@WSX"
+      MONGO_DBNAME: "address-database?authSource=admin"
   addressfrontend:
     build: ./nodejs-frontend
     ports:

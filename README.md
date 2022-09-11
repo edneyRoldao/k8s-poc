@@ -19,7 +19,7 @@ To test the concepts behind kubernetes features were created the following proje
 
 ## Mongodb run docker command
 ```
-docker run -d -p 27017:27017 -v ~/data/mongo:/data/db --name mongodb-k8s mongo:latest
+docker run -d -p 27017:27017 -v ~/data/mongo:/data/db -e MONGO_INITDB_ROOT_USERNAME='edypaul' -e MONGO_INITDB_ROOT_PASSWORD='1qaz@WSX' --name mongodb-k8s mongo:5.0.12
 ```
 
 ## Start frontend from Dockerfile
@@ -46,3 +46,15 @@ docker run -p 3001:3001 -v /app/node_modules -v $(pwd):/app k8sback
 ```
 docker-compose down && docker-compose build --no-cache && docker-compose up
 ```
+
+## Converting text to base64 on terminal
+```
+echo -n yourText | base64
+```
+
+## Mongo k8s credentials:
+- admin
+- 1qaz@wsx
+
+## References
+- [k8s with nana](https://www.youtube.com/watch?v=s_o8dwzRlu4&t=2677s&ab_channel=TechWorldwithNana)
