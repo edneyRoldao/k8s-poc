@@ -6,13 +6,20 @@ const app = express();
 app.set('view engine', 'ejs');
 app.use(express.urlencoded({ extended: false }));
 
+const BACKEND_HOST = `http://${process.env.BACKEND_HOST}:${process.env.BACKEND_PORT}`;
+
+console.log('##################################');
+console.log('##################################');
+console.log("$$$$$", BACKEND_HOST);
+console.log('##################################');
+console.log('##################################');
 
 app.get('/home', (req, res) => {
     res.render('home');
 })
 
 app.get('/', async (req, res) => {
-    const response = await axios.get(`${process.env.BACKEND_HOST}/api/addresses`);
+    const response = await axios.get(`${BACKEND_HOST}/api/addresses`);
     res.render('index', { addresses: response.data });
 })
 
@@ -23,7 +30,7 @@ app.post('/save', async (req, res) => {
         number: req.body.number,
     };
 
-    const response = await axios.post(`${process.env.BACKEND_HOST}/api/addresses`, addressPartial);
+    const response = await axios.post(`${BACKEND_HOST}/api/addresses`, addressPartial);
 
     res.render('detail-address', { address: response.data });
 })
@@ -33,7 +40,7 @@ app.get('/new-address', (req, res) => {
 })
 
 app.get('/detail-address/:id', async (req, res) => {
-    const response = await axios.get(`${process.env.BACKEND_HOST}/api/addresses/${req.params.id}`);
+    const response = await axios.get(`${BACKEND_HOST}/api/addresses/${req.params.id}`);
     res.render('detail-address', { address: response.data });
 })
 

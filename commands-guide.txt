@@ -1,0 +1,20 @@
+
+$ kubectl get all
+
+$ kubectl get configmap
+
+$ kubectl get secret
+
+$ kubectl get pod
+
+$ kubectl --help
+
+$ kubectl get --help
+
+$ kubectl describe service mongo-service
+
+$ kubectl describe <k8s-component> <component-name>
+
+$ kubectl logs <pod-name>
+
+$ kubectl logs <pod-name> -f (follow the log) 

@@ -1,0 +1,37 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: frontend-deployment
+  labels:
+    app: frontend
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: frontend
+  template:
+    metadata:
+      labels:
+        app: frontend
+    spec:
+      containers:
+      - name: frontend
+        image: edneyroldao/k8sfrontend:1.0.3
+        ports:
+        - containerPort: 3031
+        env:
+        - name: APP_PORT
+          valueFrom:
+            configMapKeyRef:
+              name: app-config
+              key: frontend-port
+        - name: BACKEND_PORT
+          valueFrom:
+            configMapKeyRef:
+              name: app-config
+              key: backend-port
+        - name: BACKEND_HOST
+          valueFrom:
+            configMapKeyRef:
+              name: app-config
+              key: backend-host

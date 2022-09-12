@@ -1,0 +1,47 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: backend-deployment
+  labels:
+    app: backend
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: backend
+  template:
+    metadata:
+      labels:
+        app: backend
+    spec:
+      containers:
+      - name: backend
+        image: edneyroldao/k8sbackend:1.0.0
+        ports:
+        - containerPort: 3030
+        env:
+        - name: APP_PORT
+          valueFrom:
+            configMapKeyRef:
+              name: app-config
+              key: backend-port
+        - name: MONGO_HOST
+          valueFrom:
+            configMapKeyRef:
+              name: app-config
+              key: mongo-host
+        - name: MONGO_DBNAME
+          valueFrom:
+            configMapKeyRef:
+              name: app-config
+              key: mongo-database
+        - name: MONGO_USERNAME
+          valueFrom:
+            secretKeyRef:
+              name: mongo-secret
+              key: mongo-user
+        - name: MONGO_PASSWORD
+          valueFrom:
+            secretKeyRef:
+              name: mongo-secret
+              key: mongo-user
