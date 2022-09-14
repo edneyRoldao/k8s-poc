@@ -54,7 +54,14 @@ echo -n yourText | base64
 
 ## Mongo k8s credentials:
 - admin
-- 1qaz@wsx
+- admin
 
 ## References
 - [k8s with nana](https://www.youtube.com/watch?v=s_o8dwzRlu4&t=2677s&ab_channel=TechWorldwithNana)
+
+
+## Creating ingress (minikube cluster)
+Automatically starts the k8s Nginx impl of ingress controller
+```
+minikube addons enable ingress
+```
